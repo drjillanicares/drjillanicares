@@ -474,7 +474,7 @@
           <div class="hero-eyebrow"><span class="ldot"></span> Now Accepting
             Patients · Telehealth Available</div>
           <h1 class="hero-name">Dr. Aqib<em>Raza Jillani</em><span
-              style="font-size:.52em;color:var(--teal);font-style:normal;font-family:&#39;DM Sans&#39;,sans-serif;font-weight:700;letter-spacing:.1em;">PT</span></h1>
+              style="font-size:.52em;color:var(--teal);font-style:normal;font-family:sans-serif;font-weight:700;letter-spacing:.1em;">PT</span></h1>
           <p class="hero-pt">Doctor of Physical Therapy · AHPC Registered ·
             DPT</p>
           <p class="hero-quote">"<strong>Health is Wealth</strong> —<br>Let Me
@@ -1485,51 +1485,100 @@
             target="_blank">💬 Book via WhatsApp — 03048438337</a>
         </div>
         <div class="form-wrap rr on" style="transition-delay: 0.28s;">
-          <div class="form-title">Request an Appointment</div>
-          <div class="form-sub">Fill in the form below and I'll respond via
-            WhatsApp within a few hours.</div>
-          <div class="fg-row">
-            <div class="fg"><label>Full Name *</label><input type="text"
-                placeholder="Muhammad Ali"></div>
-            <div class="fg"><label>Phone / WhatsApp *</label><input type="tel"
-                placeholder="+92 3XX XXXXXXX"></div>
-          </div>
-          <div class="fg"><label>City / Location</label><input type="text"
-              placeholder="Sargodha, Lahore, Islamabad..."></div>
-          <div class="fg">
-            <label>Your Condition *</label>
-            <select>
-              <option value>Select your condition...</option>
-              <optgroup label="Common Conditions">
-                <option>Back Pain / Neck Pain</option><option>Knee Pain /
-                  Arthritis</option><option>Frozen Shoulder</option>
-                <option>Hip Pain</option><option>Sciatica / Nerve
-                  Pain</option><option>Headaches / Cervicogenic</option>
-              </optgroup>
-              <optgroup label="Rehabilitation">
-                <option>Post-Surgical Rehab</option><option>Sports Injury
-                  Rehab</option><option>Stroke / Neuro Rehab</option>
-                <option>Fracture Recovery</option><option>Paediatric / Child
-                  Rehab</option><option>Cardiopulmonary Rehab</option>
-              </optgroup>
-              <optgroup label="Other"><option>Other (describe
-                  below)</option></optgroup>
-            </select>
-          </div>
-          <div class="fg">
-            <label>Consultation Type *</label>
-            <select>
-              <option>Clinic Visit — Sillanwali, Sargodha (Address on
-                Booking)</option>
-              <option>Telehealth — Online Video / Call Consultation</option>
-              <option>Not Sure — Please Advise</option>
-            </select>
-          </div>
-          <div class="fg"><label>Message / Details</label><textarea
-              placeholder="Describe your condition, how long you&#39;ve had it, and any previous treatments..."></textarea></div>
-          <a href="https://wa.me/923048438337" class="form-btn"
-            target="_blank">💬 Send via WhatsApp</a>
-        </div>
+  <form>
+    <div class="form-title">Request an Appointment</div>
+    <div class="form-sub">Fill in the form below and I'll respond via WhatsApp within a few hours.</div>
+
+    <div class="fg-row">
+      <div class="fg">
+        <label>Full Name *</label>
+        <input type="text" id="name" name="name" placeholder="Muhammad Ali" required>
+      </div>
+
+      <div class="fg">
+        <label>Phone / WhatsApp *</label>
+        <input type="tel" id="phone" name="phone" placeholder="+92 3XX XXXXXXX" required>
+      </div>
+    </div>
+
+    <div class="fg">
+      <label>City / Location</label>
+      <input type="text" id="city" name="city" placeholder="Sargodha, Lahore, Islamabad...">
+    </div>
+
+    <div class="fg">
+      <label>Your Condition *</label>
+      <select id="condition" name="condition" required>
+        <option value="">Select your condition...</option>
+
+        <optgroup label="Common Conditions">
+          <option value="Back Pain / Neck Pain">Back Pain / Neck Pain</option>
+          <option value="Knee Pain / Arthritis">Knee Pain / Arthritis</option>
+          <option value="Frozen Shoulder">Frozen Shoulder</option>
+          <option value="Hip Pain">Hip Pain</option>
+          <option value="Sciatica / Nerve Pain">Sciatica / Nerve Pain</option>
+          <option value="Headaches / Cervicogenic">Headaches / Cervicogenic</option>
+        </optgroup>
+
+        <optgroup label="Rehabilitation">
+          <option value="Post-Surgical Rehab">Post-Surgical Rehab</option>
+          <option value="Sports Injury Rehab">Sports Injury Rehab</option>
+          <option value="Stroke / Neuro Rehab">Stroke / Neuro Rehab</option>
+          <option value="Fracture Recovery">Fracture Recovery</option>
+          <option value="Paediatric / Child Rehab">Paediatric / Child Rehab</option>
+          <option value="Cardiopulmonary Rehab">Cardiopulmonary Rehab</option>
+        </optgroup>
+
+        <optgroup label="Other">
+          <option value="Other">Other (describe below)</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="fg">
+      <label>Consultation Type *</label>
+      <select id="consultation" name="consultation" required>
+        <option value="Clinic Visit">Clinic Visit — Sillanwali, Sargodha</option>
+        <option value="Telehealth">Telehealth — Online Video / Call</option>
+        <option value="Not Sure">Not Sure — Please Advise</option>
+      </select>
+    </div>
+
+    <div class="fg">
+      <label>Message / Details</label>
+      <textarea id="message" name="message"
+        placeholder="Describe your condition, how long you've had it, and any previous treatments..."></textarea>
+    </div>
+
+    <button type="button" class="form-btn" onclick="sendToWhatsApp()">💬 Send via WhatsApp</button>
+  </form>
+</div>
+         <script>
+function sendToWhatsApp() {
+  let name = document.getElementById('name').value;
+  let phone = document.getElementById('phone').value;
+  let city = document.getElementById('city').value;
+  let condition = document.getElementById('condition').value;
+  let consult = document.getElementById('consultation').value;
+  let message = document.getElementById('message').value;
+
+  if (!name || !phone || !condition || !consult) {
+    alert("Please fill all required fields!");
+    return;
+  }
+
+  let text = `*Appointment Request*%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+City: ${city}%0A
+Condition: ${condition}%0A
+Consultation: ${consult}%0A
+Details: ${message}`;
+
+  let url = `https://wa.me/923048438337?text=${text}`;
+  window.open(url, '_blank');
+}
+</script>
       </div>
     </section>
 
